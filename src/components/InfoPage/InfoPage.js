@@ -15,8 +15,49 @@ import { connect } from "react-redux";
 //     </p>
 //   </div>
 // );
+// 
+// deleteClicked = () => {
+
+//   // submit/dispatch any title and/or description changes
+//     this.props.dispatch( { type: 'DELETE_ITEM', payload: {
+//         id: this.state.id,    
+//       }})        
+//   }
 
 class InfoPage extends Component {
+
+  state = {
+    newItem: {
+      image_url: '',
+      description: '',
+      // user_id: this.props.reduxState.user.userid? something like that
+    }
+  }
+
+  //target property values
+  handleChangeFor = (event, propertyName) => {
+    this.setState({
+      newItem: {
+        ...this.state.newItem,
+        [propertyName]: event.target.value
+      }
+    })
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.props.dispatch({
+      type: "ADD_ITEM",
+      payload: this.state.newItem
+  })    // Clear Form inputs
+    this.setState({
+      newItem: {
+        image_url: '',
+        description: ''
+      }
+    })
+  }
+
   componentDidMount() {
     this.getShelf();
   }
@@ -26,15 +67,27 @@ class InfoPage extends Component {
   render() {
     return (
       <><div className="parent">
-        {JSON.stringify(this.props.reduxState.shelf)}
-        {/* map over contents of movies reducer, */}
-        {/* creating a movieItem component for each */}
+        {/* {JSON.stringify(this.props.reduxState.shelf)} */}
+        {/* map over contents of shelf reducer, */}
+        <form onSubmit={this.handleSubmit}>
+        <input placeholder="Image URL"
+        onChange={(event) =>
+          this.handleChangeFor(event, 'image_url')}
+        />
+        <input  placeholder="Description"
+        onChange={(event) =>
+          this.handleChangeFor(event, 'description')}
+        />
+        <input type="submit"/>
+        </form>
         <ul>
-        {this.props.reduxState.shelf.map((x, thisKey) => (
-           <li key={thisKey}>{x.id}</li>
-        ))}
+        {this.props.reduxState.shelf.map((x, thisKey) => 
+          <li key={thisKey}><img src={x.image_url} alt={x.description}/></li>
+  )}
+             {/* <button onClick= {this.deleteClicked}>Delete</button> */}
+
         </ul>
-        {/* <button onClick= {this.deleteClicked}>Delete</button>*/}
+        
         <br />
         </div>
 

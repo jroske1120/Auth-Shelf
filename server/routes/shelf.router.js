@@ -19,7 +19,22 @@ router.get('/', (req, res) => {
  * Add an item for the logged in user to the shelf
  */
 router.post('/', (req, res) => {
-
+    console.log('POST req.body: ', req.body);
+    console.log('POST req.user: ', req.user);
+    console.log('POST req.body.description: ', req.body.description);
+    
+    let queryString = `INSERT INTO "item" ("description", "image_url")
+        VALUES ( ${req.body.description}, ${req.body.image_url});`;
+    
+    pool.query(queryString).then(( result ) => {
+            // success
+            console.log("POST successful")
+            res.sendStatus(201);
+        }).catch((err) => {
+            // failure
+            console.log("----->Error in POST:", err);
+            res.sendStatus(500)
+        })
 });
 
 
