@@ -67,17 +67,20 @@ We recommend working in groups of 4 or 6 and pair programming for this project. 
 
 ### Display all Items
 
-The shelf (info) page should show all of the items stored in the database in a list or table.
+The shelf (info) page should show all of the items stored in the database in a list or table. 
+`GET`
 
 ### Add Items to the Shelf
 
-The Shelf (Info) Page should allow a user to add a new item to the database (which should immediately appear in the list).
+The Shelf (Info) Page should allow a user to add a new item to the database (which should immediately appear in the list). 
+`POST`
 
 > NOTE: Image url should be a full path to an existing image on the web. You should not attempt to implement image upload for this.
 
 ### Delete Items from the Shelf
 
-An authenticated user should be able to delete items from the shelf if they were the one who added the item to the shelf.
+An authenticated user should be able to delete items from the shelf if they were the one who added the item to the shelf. 
+`DELETE based on id, if user_id === id of person clicking delete`
 
 > NOTE: This should require client and server changes. An unauthenticated attacker from Postman should not be able to delete anything.
 
