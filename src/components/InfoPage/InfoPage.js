@@ -34,7 +34,7 @@ class InfoPage extends Component {
            <li key={thisKey}>{x.id}</li>
         ))}
         </ul>
-        {/* <button onClick= {this.cancelClicked}>Cancel</button>*/}
+        {/* <button onClick= {this.deleteClicked}>Delete</button>*/}
         <br />
         </div>
 
