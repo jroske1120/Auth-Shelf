@@ -62,7 +62,7 @@ class InfoPage extends Component {
     this.getShelf();
   }
   getShelf = () => {
-    this.props.dispatch({ type: "FETCH_SHELF" });
+    this.props.dispatch({ type: "GET_SHELF" });
   };
   render() {
     return (
@@ -72,11 +72,11 @@ class InfoPage extends Component {
         <form onSubmit={this.handleSubmit}>
         <input placeholder="Image URL"
         onChange={(event) =>
-          this.handleChangeFor(event, 'image_url')}
+          this.handleChangeFor(event, "image_url")}
         />
         <input  placeholder="Description"
         onChange={(event) =>
-          this.handleChangeFor(event, 'description')}
+          this.handleChangeFor(event, "description")}
         />
         <input type="submit"/>
         </form>

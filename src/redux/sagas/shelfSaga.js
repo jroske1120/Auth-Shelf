@@ -7,7 +7,7 @@ function* getShelf(action){
 try{
     const response = yield axios.get ('/api/shelf')
     console.log('okay with shelf get request:', action);
-    yield put ({type: 'SET_SHELF', payload: response.data});
+    yield put({type: 'SET_SHELF', payload: response.data});
 } catch (error){
     console.log('error with shelf get request:', error);
 };
@@ -41,7 +41,7 @@ function* addItem(action){
     try {
         // post request that adds animals to database
         const response = yield axios.post('/api/shelf', action.payload)
-        yield put({ type: 'FETCH_SHELF', payload: response.data })
+        yield put({ type: 'GET_SHELF', payload: response.data })
     } catch (error) {
         console.log('issue with post saga:', error)
     }
@@ -49,7 +49,7 @@ function* addItem(action){
 
 
 function* shelfSaga() {
-    yield takeLatest('FETCH_SHELF', getShelf);
+    yield takeLatest('GET_SHELF', getShelf);
     yield takeLatest('ADD_ITEM', addItem);
     // yield takeLatest('DELETE_ITEM', deleteShelfItem);
 }

@@ -23,13 +23,13 @@ router.post('/', (req, res) => {
     console.log('POST req.user: ', req.user);
     console.log('POST req.body.description: ', req.body.description);
     
-    const queryString = `INSERT INTO "item" ("description", "image_url")
-        VALUES ( $1, $2);`;
+    const queryString = `INSERT INTO "item" ("description", "image_url", "user_id")
+        VALUES ( $1, $2, $3);`;
     
-    pool.query(queryString, [req.body.image_url, req.body.description]).then(( result ) => {
+    pool.query(queryString, [req.body.description, req.body.image_url, req.user.id]).then(( result ) => {
             // success
             console.log("POST successful")
-            res.sendStatus(201);
+            res.send(result.rows);
         }).catch((err) => {
             // failure
             console.log("----->Error in POST:", err);
