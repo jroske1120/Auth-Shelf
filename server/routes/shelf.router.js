@@ -23,10 +23,10 @@ router.post('/', (req, res) => {
     console.log('POST req.user: ', req.user);
     console.log('POST req.body.description: ', req.body.description);
     
-    let queryString = `INSERT INTO "item" ("description", "image_url")
-        VALUES ( ${req.body.description}, ${req.body.image_url});`;
+    const queryString = `INSERT INTO "item" ("description", "image_url")
+        VALUES ( $1, $2);`;
     
-    pool.query(queryString).then(( result ) => {
+    pool.query(queryString, [req.body.image_url, req.body.description]).then(( result ) => {
             // success
             console.log("POST successful")
             res.sendStatus(201);

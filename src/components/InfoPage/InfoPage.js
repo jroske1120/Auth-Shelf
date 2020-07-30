@@ -35,11 +35,11 @@ class InfoPage extends Component {
   }
 
   //target property values
-  handleChangeFor = (event, propertyName) => {
+  handleChangeFor = (event, type) => {
     this.setState({
       newItem: {
         ...this.state.newItem,
-        [propertyName]: event.target.value
+        [type]: event.target.value
       }
     })
   }

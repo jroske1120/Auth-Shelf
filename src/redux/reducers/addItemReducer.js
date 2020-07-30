@@ -4,17 +4,14 @@
 // This reducer is our array where we put all of our items where
 // we will be able to map through them and display them on the dom
 // on the shelf page
-
-
-const shelfReducer = (state = [], action) => {
+  
+  const newItem = (state = [], action) => {
     switch (action.type) {
-      case 'SET_SHELF':
-        return action.payload;
-    //   case 'UNSET_USER':
-    //     return {};
-      default:
-        return state;
+        case 'ADD_ITEM':
+            return action.payload;
+        default:
+            return state;
     }
-  };
+}
 
-export default shelfReducer;
+export default newItem;

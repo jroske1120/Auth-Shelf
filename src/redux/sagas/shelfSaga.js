@@ -13,19 +13,19 @@ try{
 };
 }
 
-function* deleteShelfItem(action){
+// function* deleteShelfItem(action){
 
-    try{
-        // Post is to add, Delete is to remove
-        // Post-adds Get-displays Delete-removes Update-edits
+//     try{
+//         // Post is to add, Delete is to remove
+//         // Post-adds Get-displays Delete-removes Update-edits
 
-        const response = yield axios.delete ('/api/shelf')
-        console.log('okay with shelf delete request:', action);
-        yield put ({type: 'SET_SHELF', payload: response.data});
-    } catch (error){
-        console.log('error with shelf delete request:', error);
-    };
-}
+//         const response = yield axios.delete ('/api/shelf')
+//         console.log('okay with shelf delete request:', action);
+//         yield put ({type: 'SET_SHELF', payload: response.data});
+//     } catch (error){
+//         console.log('error with shelf delete request:', error);
+//     };
+// }
 // // DELETE an order in the router
 // router.delete('/:id', (req, res) => {
 //     pool.query('DELETE FROM "orders" WHERE id=$1', [req.params.id]).then((result) => {
@@ -40,8 +40,8 @@ function* addItem(action){
     console.log('action payload', action.payload);
     try {
         // post request that adds animals to database
-        const response = yield axios.post('/api/shelf')
-        yield put({ type: 'SET_SHELF', payload: response.data })
+        const response = yield axios.post('/api/shelf', action.payload)
+        yield put({ type: 'FETCH_SHELF', payload: response.data })
     } catch (error) {
         console.log('issue with post saga:', error)
     }
@@ -51,7 +51,7 @@ function* addItem(action){
 function* shelfSaga() {
     yield takeLatest('FETCH_SHELF', getShelf);
     yield takeLatest('ADD_ITEM', addItem);
-    yield takeLatest('DELETE_ITEM', deleteShelfItem);
+    // yield takeLatest('DELETE_ITEM', deleteShelfItem);
 }
   
 export default shelfSaga;
